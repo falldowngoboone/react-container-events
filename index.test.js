@@ -1,14 +1,25 @@
 import React from 'react';
-import { renderWithContainerEvents, useContainerEvent } from './index.js';
+import { render } from 'react-dom';
+import { ContainerEventsProvider, useContainerEvent } from './index.js';
 
 test('Custom events dispatched on container trigger useContainerEvent listeners', () => {
   const container = document.createElement('div');
   const spy = jest.fn();
   document.body.appendChild(container);
 
-  renderWithContainerEvents(<Component />, container);
+  render(
+    <ContainerEventsProvider container={container}>
+      <Component />
+    </ContainerEventsProvider>,
+    container,
+  );
   // force a rerender since useEffect is asyncrhonous to prevent render blocking
-  renderWithContainerEvents(<Component />, container);
+  render(
+    <ContainerEventsProvider container={container}>
+      <Component />
+    </ContainerEventsProvider>,
+    container,
+  );
 
   container.dispatchEvent(new CustomEvent('test'));
 

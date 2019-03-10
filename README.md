@@ -9,12 +9,17 @@ First, render your app with the Container Events context provider:
 ```js
 // index.js
 import React from 'react';
-import { renderWithContainerEvents } from './path/to/react-container-events';
+import { render } from 'react-dom';
+import { ContainerEventsProvider } from './path/to/react-container-events';
 import App from './App';
 
-renderWithContainerEvents(
-  <App />,
-  document.getElementById('react-app-root-id'),
+const root = document.getElementById('react-app-root-id');
+
+render(
+  <ContainerEventsProvider container={root}>
+    <App />
+  </ContainerEventsProvider>,
+  root,
 );
 ```
 
