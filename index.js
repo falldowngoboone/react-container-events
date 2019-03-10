@@ -1,5 +1,5 @@
-import { render } from "react-dom";
-import React, { createContext, useContext, useEffect } from "react";
+import { render } from 'react-dom';
+import React, { createContext, useContext, useEffect } from 'react';
 
 const ContainerContext = createContext(window.document);
 
@@ -9,7 +9,7 @@ export function renderWithContainerEvents(element, container, callback) {
       {element}
     </ContainerContext.Provider>,
     container,
-    callback
+    callback,
   );
 }
 
