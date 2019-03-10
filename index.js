@@ -17,6 +17,8 @@ export function useContainerEvent(event, listener) {
   const container = useContext(ContainerContext);
   useEffect(() => {
     container.addEventListener(event, listener);
-    return container.removeEventListener(event, listener);
-  });
+    return function cleanup() {
+      container.removeEventListener(event, listener);
+    };
+  }, [event, listener]);
 }
